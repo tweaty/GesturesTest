@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Gestures Test</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="start">Badanie</string>
+    <string name="settings">Ustawienia</string>
+    <string name="about">O programie</string>
+    <string name="quit">Zakończ</string>
+    <string name="title_activity_survey"><i><u>Ankieta</u></i></string>
+    <string name="user_id">Nr id:</string>
+    <string name="sex">Płeć:</string>
+    <string name="men">Mężczyzna</string>
+    <string name="women">Kobieta</string>
+    <string name="age">Wiek:</string>
+    <string name="using_smartphone">Czy używasz smartphona?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="set">Wybierz</string>
+    <string name="cancel">Anuluj</string>
+    <string name="fill_age">Uzupełnij wiek</string>
+    <string name="title_activity_tap">TapActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>
