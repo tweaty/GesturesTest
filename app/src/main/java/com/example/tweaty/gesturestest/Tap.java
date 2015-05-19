@@ -53,16 +53,9 @@ public class Tap extends View{
         return new Point(xx, yy);
     }
 
-/*    public void setSize(float size){
-        mSize = size;
-    }*/
     public void setSize(float size){ // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        float densityDpi = metrics.densityDpi;
-        float inches = size / 25.4f;
-        mSize = (inches * densityDpi);
-        Log.i("DPI", "dpi: " + densityDpi + " size: "+mSize + " in: "+ inches);
-
+        mSize = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
+        Log.i("DPI", " size: " + mSize);
     }
     @Override
     protected void onDraw(Canvas canvas) {

@@ -38,7 +38,7 @@ public class TapActivity extends ActionBarActivity implements InfoDialog.InfoDia
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Tap tap = new Tap(getApplicationContext(), mDisplayWidth, mDisplayHeight);
+        Zoom tap = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight);
         tap.setListener(this);
         mFrame.addView(tap);
     }
