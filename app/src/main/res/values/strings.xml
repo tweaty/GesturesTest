@@ -22,4 +22,5 @@
     <string name="title_activity_tap">TapActivity</string>
     <string name="probe_counter">Próba nr</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_test_list">TestListActivity</string>
 </resources>

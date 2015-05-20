@@ -1,5 +1,6 @@
 package com.example.tweaty.gesturestest;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.WindowManager;
@@ -7,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class TapActivity extends ActionBarActivity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
+public class TapActivity extends Activity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
 
     private RelativeLayout mFrame;
     private TextView text;

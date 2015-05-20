@@ -43,7 +43,7 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
         if (mAge == 0){
             Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
         }else{
-            Intent startIntent = new Intent(this, TapActivity.class);
+            Intent startIntent = new Intent(this, TestListActivity.class);
             startActivity(startIntent);
         }
 

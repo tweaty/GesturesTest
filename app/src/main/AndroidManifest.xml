@@ -30,8 +30,11 @@
         </activity>
         <activity
             android:name=".TapActivity"
-            android:label="@string/title_activity_tap"
-            >
+            android:label="@string/title_activity_tap" >
+        </activity>
+        <activity
+            android:name=".TestListActivity"
+            android:label="@string/title_activity_test_list" >
         </activity>
     </application>
 
