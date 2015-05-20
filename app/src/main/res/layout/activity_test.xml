@@ -7,6 +7,9 @@
 
     <TextView android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/probe_counter"
+        android:layout_marginLeft="16dp"
+        android:textColor="#ff000000"/>
 
 </RelativeLayout>

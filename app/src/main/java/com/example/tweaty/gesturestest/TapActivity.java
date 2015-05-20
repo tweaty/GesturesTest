@@ -1,6 +1,5 @@
 package com.example.tweaty.gesturestest;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.WindowManager;
@@ -16,20 +15,21 @@ public class TapActivity extends ActionBarActivity implements InfoDialog.InfoDia
 
 
     private int liczba = 0;
-    private String tekst = "Liczba klikniêæ: ";
+    private String tekst;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //no status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_tap);
+        setContentView(R.layout.activity_test);
 
         mFrame = (RelativeLayout) findViewById(R.id.frame);
         text = (TextView) findViewById(R.id.text);
-        text.setText(tekst + liczba);
+        tekst = getString(R.string.probe_counter);
+        text.setText(tekst+" "+liczba +" z "+30);
         InfoDialog infoDialog = new InfoDialog();
-
+        infoDialog.setViewId(R.layout.age_dialog);
         infoDialog.show(getFragmentManager(), "Info");
     }
 
@@ -46,6 +46,6 @@ public class TapActivity extends ActionBarActivity implements InfoDialog.InfoDia
     @Override
     public void onActionComplete() {
         liczba++;
-        text.setText(tekst+liczba);
+        text.setText(tekst+" "+liczba +" z "+30);
     }
 }

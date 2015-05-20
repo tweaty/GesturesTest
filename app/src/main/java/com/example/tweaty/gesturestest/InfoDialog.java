@@ -13,7 +13,7 @@ import android.widget.NumberPicker;
 public class InfoDialog extends DialogFragment {
 
     InfoDialogListener mInfoDialogListener;
-
+    int viewId;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -30,7 +30,8 @@ public class InfoDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder.setMessage("TapTest")
+
+        builder.setView(inflater.inflate(viewId, null))//.setMessage("TapTest")
                 .setTitle(R.string.title_activity_tap)
                 .setPositiveButton(R.string.set, new DialogInterface.OnClickListener() {
                     @Override
@@ -43,6 +44,9 @@ public class InfoDialog extends DialogFragment {
         return builder.create();
     }
 
+    public void setViewId(int id){
+        viewId = id;
+    }
     public interface InfoDialogListener {
         void onDialogPositiveClick(InfoDialog dialog);
         //void onDialogNegativeClick(InfoDialog dialog);

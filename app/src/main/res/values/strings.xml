@@ -20,6 +20,6 @@
     <string name="cancel">Anuluj</string>
     <string name="fill_age">Uzupełnij wiek</string>
     <string name="title_activity_tap">TapActivity</string>
-
+    <string name="probe_counter">Próba nr</string>
     <string name="hello_world">Hello world!</string>
 </resources>
