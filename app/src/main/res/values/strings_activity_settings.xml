@@ -1,0 +1,54 @@
+<resources>
+    <string name="title_activity_settings">Ustawienia</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Test resolution settings -->
+    <string name="pref_header_test_resolution">Obszar testu</string>
+
+    <string name="pref_fullscreen_title">Pełny ekran</string>
+    <string name="pref_fullscreen_summary">Test przeprowadzany jest na całym ekranie urządzenia.</string>
+
+    <string name="pref_width_picker_title">Szerokość</string>
+    <string name="pref_height_picker_title">Wysokość</string>
+
+    <!-- Test parameters settings -->
+    <string name="pref_header_test_parameters">Opcje zapisu</string>
+
+    <string name="pref_test_number_title">Liczba powtórzeń testu</string>
+
+    <string name="pref_sequence_title">Kolejność sekwencji</string>
+    <string-array name="pref_sequence_entries">
+        <item>Tap, Pan, Pinch and Stretch</item>
+        <item>Pan, Tap, Pinch and Stretch</item>
+        <item>Pinch and Stretch, Tap, Pan</item>
+        <item>Tap, Pinch and Stretch, Pan</item>
+        <item>Pan, Pinch and Stretch, Tap</item>
+        <item>Pinch and Stretch, Pan, Tap</item>
+    </string-array>
+    <string-array name="pref_sequence_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- save file settings -->
+    <string name="pref_header_save_file">Opcje zapisu</string>
+
+
+    <string name="pref_format_title">Format zapisu pliku</string>
+    <string-array name="pref_format_entries">
+        <item>CSV</item>
+        <item>XML</item>
+    </string-array>
+    <string-array name="pref_format_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="pref_email_title">Email</string>
+
+</resources>

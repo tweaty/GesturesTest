@@ -21,8 +21,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         Button bStart = (Button)findViewById(R.id.startButton);
-        Button b1 = (Button)findViewById(R.id.aboutButton);
-        b1.setOnClickListener(new View.OnClickListener() {
+        Button bAbout = (Button)findViewById(R.id.aboutButton);
+        Button bSettings = (Button)findViewById(R.id.settingsButton);
+        bAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 show();
@@ -34,6 +35,13 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent startIntent = new Intent(MainActivity.this, SurveyActivity.class);
                 startActivity(startIntent);
+            }
+        });
+        bSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
             }
         });
     }

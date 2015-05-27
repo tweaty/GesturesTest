@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.example.tweaty.gesturestest.NumberPickerPreference
+        android:key="key_test_numeber"
+        android:title="@string/pref_test_number_title"
+        android:defaultValue="30" />
+    <ListPreference
+        android:key="key_sequence"
+        android:title="@string/pref_sequence_title"
+        android:defaultValue="0"
+        android:entries="@array/pref_sequence_entries"
+        android:entryValues="@array/pref_sequence_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+</PreferenceScreen>

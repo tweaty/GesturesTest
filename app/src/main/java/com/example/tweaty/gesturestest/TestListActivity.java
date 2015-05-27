@@ -1,13 +1,9 @@
 package com.example.tweaty.gesturestest;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,8 +15,8 @@ import java.util.ArrayList;
 
 
 public class TestListActivity extends ListActivity {
-
     private ArrayList<Test> mTests = new ArrayList<Test>();
+    private Intent startIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +35,21 @@ public class TestListActivity extends ListActivity {
 
         switch (position){
             case 1:
-                Intent startIntent = new Intent(this, TapActivity.class);
+                startIntent = new Intent(this, TapActivity.class);
                 startActivity(startIntent);
                 break;
-
+            case 2:
+                startIntent = new Intent(this, PanActivity.class);
+                startActivity(startIntent);
+                break;
+            case 3:
+                startIntent = new Intent(this, ZoomActivity.class);
+                startActivity(startIntent);
+                break;
+            case 4:
+                startIntent = new Intent(this, SequenceActivity.class);
+                startActivity(startIntent);
+                break;
         }
 
     }

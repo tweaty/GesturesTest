@@ -23,4 +23,7 @@
     <string name="probe_counter">Próba nr</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_test_list">TestListActivity</string>
+    <string name="title_activity_pan">PanActivity</string>
+    <string name="title_activity_zoom">ZoomActivity</string>
+    <string name="title_activity_sequence">SequenceActivity</string>
 </resources>

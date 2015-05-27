@@ -1,14 +1,16 @@
 package com.example.tweaty.gesturestest;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class TapActivity extends Activity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
+public class PanActivity extends Activity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
 
     private RelativeLayout mFrame;
     private TextView text;
@@ -39,14 +41,14 @@ public class TapActivity extends Activity implements InfoDialog.InfoDialogListen
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Tap tap = new Tap(getApplicationContext(), mDisplayWidth, mDisplayHeight);
-        tap.setListener(this);
-        mFrame.addView(tap);
+        Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight);
+        pan.setListener(this);
+        mFrame.addView(pan);
     }
 
     @Override
     public void onActionComplete() {
         liczba++;
-        text.setText(tekst+" "+liczba +" z "+30);
+        text.setText(tekst + " " + liczba + " z " + 30);
     }
 }

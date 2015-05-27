@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <CheckBoxPreference
+        android:key="key_checkbox_fullscreen"
+        android:title="@string/pref_fullscreen_title"
+        android:summary="@string/pref_fullscreen_summary"
+        android:defaultValue="true"
+        android:disableDependentsState="true" />
+
+    <com.example.tweaty.gesturestest.ResolutionPickerPreference
+        android:key="key_width_picker"
+        android:title="@string/pref_width_picker_title"
+        android:dependency="key_checkbox_fullscreen"
+        android:defaultValue="400" />
+
+    <com.example.tweaty.gesturestest.ResolutionPickerPreference
+        android:key="key_height_picker"
+        android:title="@string/pref_height_picker_title"
+        app:isHeight="true"
+        android:dependency="key_checkbox_fullscreen"
+        android:defaultValue="400" />
+
+</PreferenceScreen>

@@ -1,0 +1,17 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="com.example.tweaty.gesturestest.SettingsActivity$TestResolutionPreferenceFragment"
+        android:title="@string/pref_header_test_resolution" />
+
+    <header
+        android:fragment="com.example.tweaty.gesturestest.SettingsActivity$TestParametersPreferenceFragment"
+        android:title="@string/pref_header_test_parameters" />
+
+    <header
+        android:fragment="com.example.tweaty.gesturestest.SettingsActivity$SaveFilePreferenceFragment"
+        android:title="@string/pref_header_save_file" />
+
+</preference-headers>

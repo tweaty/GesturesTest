@@ -36,6 +36,22 @@
             android:name=".TestListActivity"
             android:label="@string/title_activity_test_list" >
         </activity>
+        <activity
+            android:name=".PanActivity"
+            android:label="@string/title_activity_pan" >
+        </activity>
+        <activity
+            android:name=".ZoomActivity"
+            android:label="@string/title_activity_zoom" >
+        </activity>
+        <activity
+            android:name=".SequenceActivity"
+            android:label="@string/title_activity_sequence" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
