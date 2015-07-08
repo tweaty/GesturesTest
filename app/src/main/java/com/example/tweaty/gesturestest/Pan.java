@@ -35,6 +35,7 @@ public class Pan extends Tap {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawRect(mX2,mY2, mX2+mSize, mY2+mSize, paint2);
+        canvas.drawText("2", (mX2 + mSize / 2), mY2 + mSize / 2 - ((text.descent() + text.ascent()) / 2), text);
         super.onDraw(canvas);
     }
 

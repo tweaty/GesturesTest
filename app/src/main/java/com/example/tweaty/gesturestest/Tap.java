@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ public class Tap extends View{
 
     Context context;
     Paint paint = new Paint();
+    Paint text = new Paint();
     float mX, mY, mWidth, mHeight;
     float mSize;
     IsActionCompleteListener listener;
@@ -26,6 +28,10 @@ public class Tap extends View{
         mWidth = width;
         mHeight = height;
         paint.setColor(Color.RED);
+        text.setColor(Color.WHITE);
+        text.setTextSize(50);
+        text.setTextAlign(Paint.Align.CENTER);
+        text.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         setSize(10);
         setCo(randomPlace());
     }
@@ -59,7 +65,8 @@ public class Tap extends View{
     }
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(mX, mY, mX+mSize, mY+mSize, paint);
+        canvas.drawRect(mX, mY, mX +mSize, mY+mSize, paint);
+        canvas.drawText("1", (mX+mSize/2), mY+mSize/2  - ((text.descent() + text.ascent()) / 2), text);
     }
     public boolean intersect(float x, float y){
         return x >= mX && x <= mX + mSize && y >= mY && y <= mY + mSize;
