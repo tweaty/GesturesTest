@@ -12,7 +12,7 @@ public class InfoDialog extends DialogFragment {
 
     private InfoDialogListener mInfoDialogListener;
     private int mViewId, mTileId;
-    private String mPositiveButtonText = getString(R.string.quit);
+    private int mPositiveButtonText = R.string.quit;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -23,9 +23,11 @@ public class InfoDialog extends DialogFragment {
         }
     }
 
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
+        mViewId = R.layout.age_dialog;
+        mTileId = R.string.default_name;
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -51,7 +53,7 @@ public class InfoDialog extends DialogFragment {
         mTileId = id;
     }
 
-    public void setPositiveButtonText(String positiveButton) {
+    public void setPositiveButtonText(int positiveButton) {
         this.mPositiveButtonText = positiveButton;
     }
 

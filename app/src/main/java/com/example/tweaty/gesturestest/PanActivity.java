@@ -33,6 +33,7 @@ public class PanActivity extends Activity implements InfoDialog.InfoDialogListen
         text.setText(tekst+" "+liczba +" z "+30);
         InfoDialog infoDialog = new InfoDialog();
         infoDialog.setViewId(R.layout.age_dialog);
+        infoDialog.setPositiveButtonText(R.string.yes);
         infoDialog.show(getFragmentManager(), "Info");
     }
 

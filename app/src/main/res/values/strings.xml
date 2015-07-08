@@ -26,4 +26,7 @@
     <string name="title_activity_pan">PanActivity</string>
     <string name="title_activity_zoom">ZoomActivity</string>
     <string name="title_activity_sequence">SequenceActivity</string>
+
+
+    <string name="default_name">nazwa testowa</string>
 </resources>

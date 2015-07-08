@@ -17,7 +17,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     private ScaleGestureDetector mDetetor;
     private Paint paint1 = new Paint();
     private Paint paint2 = new Paint();
-    private float mX, mY, mX2, mY2, mSize1, mSize2, mResize, mWidth, mHeight;;
+    private float mX, mY, mX2, mY2, mSize1, mSize2, mResize, mWidth, mHeight;
     private float mRange;
     private float mScaleFactor = 1.0f;
     private Random random = new Random();
