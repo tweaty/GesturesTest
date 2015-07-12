@@ -4,7 +4,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Test resolution settings -->
-    <string name="pref_header_test_resolution">Obszar testu</string>
+    <string name="pref_header_test_resolution">Obszar przeprowadzania testu</string>
 
     <string name="pref_fullscreen_title">Pełny ekran</string>
     <string name="pref_fullscreen_summary">Test przeprowadzany jest na całym ekranie urządzenia.</string>
@@ -13,26 +13,25 @@
     <string name="pref_height_picker_title">Wysokość</string>
 
     <!-- Test parameters settings -->
-    <string name="pref_header_test_parameters">Opcje zapisu</string>
+    <string name="pref_header_test_parameters">Parametry testu</string>
 
     <string name="pref_test_number_title">Liczba powtórzeń testu</string>
+    <string name="pref_test_element_size_title">Wielkość badanego elementu</string>
+    <string name="pref_test_tolerance_title">Tolerancja błędu gestu PaS</string>
 
     <string name="pref_sequence_title">Kolejność sekwencji</string>
+    <string name="pref_sequence0_title">Pierwszy gest</string>
+    <string name="pref_sequence1_title">Drugi gest</string>
+    <string name="pref_sequence2_title">Trzeci gest</string>
     <string-array name="pref_sequence_entries">
-        <item>Tap, Pan, Pinch and Stretch</item>
-        <item>Pan, Tap, Pinch and Stretch</item>
-        <item>Pinch and Stretch, Tap, Pan</item>
-        <item>Tap, Pinch and Stretch, Pan</item>
-        <item>Pan, Pinch and Stretch, Tap</item>
-        <item>Pinch and Stretch, Pan, Tap</item>
+        <item>Tap</item>
+        <item>Pan</item>
+        <item>Pinch and Stretch</item>
     </string-array>
     <string-array name="pref_sequence_values">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
     </string-array>
 
     <!-- save file settings -->

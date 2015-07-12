@@ -24,13 +24,13 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     private boolean zoomIn;
     IsActionCompleteListener listener;
 
-    Zoom(Context context, float width, float height){
+    Zoom(Context context, float width, float height, float tolerance){
         super(context);
         paint1.setColor(Color.BLACK);
         paint2.setColor(Color.RED);
         mWidth = width;
         mHeight = height;
-        mRange = 5;
+        mRange = tolerance;
         mDetetor = new ScaleGestureDetector(getContext(), this);
         randomZoomOption();
     }

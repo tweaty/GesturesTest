@@ -1,6 +1,8 @@
 package com.example.tweaty.gesturestest;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +16,7 @@ public class PanActivity extends Activity implements InfoDialog.InfoDialogListen
 
     private RelativeLayout mFrame;
     private TextView text;
-    private int mDisplayWidth, mDisplayHeight;
+    private int mDisplayWidth, mDisplayHeight, mSize;
 
 
     private int liczba = 0;
@@ -34,7 +36,12 @@ public class PanActivity extends Activity implements InfoDialog.InfoDialogListen
         InfoDialog infoDialog = new InfoDialog();
         infoDialog.setViewId(R.layout.age_dialog);
         infoDialog.setPositiveButtonText(R.string.yes);
+        infoDialog.setCancelable(false);
         infoDialog.show(getFragmentManager(), "Info");
+
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        mSize = sharedPrefs.getInt("key_element_size", 10);
     }
 
 
@@ -42,7 +49,7 @@ public class PanActivity extends Activity implements InfoDialog.InfoDialogListen
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight);
+        Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize);
         pan.setListener(this);
         mFrame.addView(pan);
     }

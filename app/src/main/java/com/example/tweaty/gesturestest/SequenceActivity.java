@@ -33,6 +33,7 @@ public class SequenceActivity extends Activity implements InfoDialog.InfoDialogL
         text.setText(tekst+" "+liczba +" z "+30);
         InfoDialog infoDialog = new InfoDialog();
         infoDialog.setViewId(R.layout.age_dialog);
+        infoDialog.setCancelable(false);
         infoDialog.show(getFragmentManager(), "Info");
     }
 
@@ -41,7 +42,7 @@ public class SequenceActivity extends Activity implements InfoDialog.InfoDialogL
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Tap tap = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight);
+        Tap tap = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, 10);
         tap.setListener(this);
         mFrame.addView(tap);
     }

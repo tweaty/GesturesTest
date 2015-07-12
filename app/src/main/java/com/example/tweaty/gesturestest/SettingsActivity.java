@@ -84,7 +84,11 @@ public class SettingsActivity extends PreferenceActivity {
         bindPreferenceSummaryToValue(findPreference("key_width_picker"));
         bindPreferenceSummaryToValue(findPreference("key_height_picker"));
         bindPreferenceSummaryToValue(findPreference("key_test_numeber"));
-        bindPreferenceSummaryToValue(findPreference("key_sequence"));
+        bindPreferenceSummaryToValue(findPreference("key_element_size"));
+        bindPreferenceSummaryToValue(findPreference("key_tolerance"));
+        bindPreferenceSummaryToValue(findPreference("key_sequence0"));
+        bindPreferenceSummaryToValue(findPreference("key_sequence1"));
+        bindPreferenceSummaryToValue(findPreference("key_sequence2"));
         bindPreferenceSummaryToValue(findPreference("key_format"));
         bindPreferenceSummaryToValue(findPreference("key_email"));
 
@@ -228,7 +232,11 @@ public class SettingsActivity extends PreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("key_test_numeber"));
-            bindPreferenceSummaryToValue(findPreference("key_sequence"));
+            bindPreferenceSummaryToValue(findPreference("key_element_size"));
+            bindPreferenceSummaryToValue(findPreference("key_tolerance"));
+            bindPreferenceSummaryToValue(findPreference("key_sequence0"));
+            bindPreferenceSummaryToValue(findPreference("key_sequence1"));
+            bindPreferenceSummaryToValue(findPreference("key_sequence2"));
         }
     }
 

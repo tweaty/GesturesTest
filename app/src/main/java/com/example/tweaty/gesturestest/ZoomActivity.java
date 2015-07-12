@@ -1,6 +1,8 @@
 package com.example.tweaty.gesturestest;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,7 @@ public class ZoomActivity extends Activity implements InfoDialog.InfoDialogListe
     private RelativeLayout mFrame;
     private TextView text;
     private int mDisplayWidth, mDisplayHeight;
+    private float mTolerance;
 
 
     private int liczba = 0;
@@ -33,7 +36,12 @@ public class ZoomActivity extends Activity implements InfoDialog.InfoDialogListe
         text.setText(tekst+" "+liczba +" z "+30);
         InfoDialog infoDialog = new InfoDialog();
         infoDialog.setViewId(R.layout.age_dialog);
+        infoDialog.setCancelable(false);
         infoDialog.show(getFragmentManager(), "Info");
+
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        mTolerance = sharedPrefs.getInt("key_tolerance", 5);
     }
 
 
@@ -41,7 +49,7 @@ public class ZoomActivity extends Activity implements InfoDialog.InfoDialogListe
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Zoom zoom = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight);
+        Zoom zoom = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight, mTolerance);
         zoom.setListener(this);
         mFrame.addView(zoom);
     }

@@ -44,8 +44,8 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
         android:layout_alignTop="@+id/textView3"
-        android:hint="id"
-        android:inputType="phone" />
+        android:inputType="text"
+        android:selectAllOnFocus="true" />
 
     <TextView
         android:id="@+id/textView4"

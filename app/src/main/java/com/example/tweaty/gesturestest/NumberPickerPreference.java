@@ -12,13 +12,16 @@ import android.widget.NumberPicker;
 public class NumberPickerPreference extends DialogPreference {
     private NumberPicker mPicker;
     private int mNumber = 0;
+    private int mMinValue, mMaxValue;
 
     public NumberPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+        processAttributeSet(attrs);
     }
 
     public NumberPickerPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        processAttributeSet(attrs);
     }
 
     @Override
@@ -47,8 +50,8 @@ public class NumberPickerPreference extends DialogPreference {
 
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
-        mPicker.setMinValue(1);
-        mPicker.setMaxValue(50);
+        mPicker.setMinValue(mMinValue);
+        mPicker.setMaxValue(mMaxValue);
         mPicker.setValue(mNumber);
     }
 
@@ -71,5 +74,11 @@ public class NumberPickerPreference extends DialogPreference {
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return a.getInt(index, 30);
+    }
+
+    private void processAttributeSet(AttributeSet attrs) {
+        //This method reads the parameters given in the xml file and sets the properties according to it
+        mMinValue = (attrs.getAttributeIntValue(null, "min", 0));
+        mMaxValue = (attrs.getAttributeIntValue(null, "max", 0));
     }
 }

@@ -1,11 +1,13 @@
 package com.example.tweaty.gesturestest;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,7 +24,7 @@ public class Tap extends View{
     float mSize;
     IsActionCompleteListener listener;
 
-    Tap(Context context, float width, float height){
+    Tap(Context context, float width, float height, int size){
         super(context);
         this.context = context;
         mWidth = width;
@@ -32,7 +34,8 @@ public class Tap extends View{
         text.setTextSize(50);
         text.setTextAlign(Paint.Align.CENTER);
         text.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        setSize(10);
+        setSize(size);
+        Log.i("pref", "size: " + size);
         setCo(randomPlace());
     }
 

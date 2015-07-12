@@ -8,18 +8,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.UUID;
 
 
 public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDialogListener{
 
     private Button bAge;
+    private EditText editText;
     private int mAge = 0;
+    private String id = UUID.randomUUID().toString();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         bAge = (Button)findViewById(R.id.bAge);
+        editText = (EditText)findViewById(R.id.editText);
+        editText.setText(id);
     }
 
     public void showAgeDialog(View v) {
