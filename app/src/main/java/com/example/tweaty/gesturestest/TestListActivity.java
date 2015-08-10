@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class TestListActivity extends ListActivity {
     private ArrayList<Test> mTests = new ArrayList<Test>();
     private Intent startIntent;
+
+    TestAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +28,20 @@ public class TestListActivity extends ListActivity {
         mTests.add(new Test("Pap"));
         mTests.add(new Test("Pinch and stretch"));
         mTests.add(new Test("Badanie sekwencji"));
-        TestAdapter adapter = new TestAdapter(this, mTests);
+        adapter = new TestAdapter(this, mTests);
         setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 0) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                mTests.get(requestCode).setDone(true);
+            }
+            adapter.notifyDataSetChanged();
+//        }
     }
 
     @Override
@@ -35,20 +49,28 @@ public class TestListActivity extends ListActivity {
 
         switch (position){
             case 1:
-                startIntent = new Intent(this, TapActivity.class);
-                startActivity(startIntent);
+                if (!mTests.get(position-1).isDone()) {
+                    startIntent = new Intent(this, TapActivity.class);
+                    startActivityForResult(startIntent, 0);
+                }
                 break;
             case 2:
-                startIntent = new Intent(this, PanActivity.class);
-                startActivity(startIntent);
+                if (!mTests.get(position-1).isDone()) {
+                    startIntent = new Intent(this, PanActivity.class);
+                    startActivityForResult(startIntent, 1);
+                }
                 break;
             case 3:
-                startIntent = new Intent(this, ZoomActivity.class);
-                startActivity(startIntent);
+                if (!mTests.get(position-1).isDone()) {
+                    startIntent = new Intent(this, ZoomActivity.class);
+                    startActivityForResult(startIntent, 2);
+                }
                 break;
             case 4:
-                startIntent = new Intent(this, SequenceActivity.class);
-                startActivity(startIntent);
+                if (!mTests.get(position-1).isDone()) {
+                    startIntent = new Intent(this, SequenceActivity.class);
+                    startActivityForResult(startIntent, 3);
+                }
                 break;
         }
 
