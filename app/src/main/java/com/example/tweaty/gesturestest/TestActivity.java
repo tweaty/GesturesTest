@@ -13,10 +13,11 @@ public class TestActivity extends Activity{
     protected RelativeLayout mFrame;
     protected TextView text;
     protected int mDisplayWidth, mDisplayHeight, mSize, mTestsNumber;
-    protected int counter = 0;
+    protected int counter = 1;
     protected String msg;
     private InfoDialog infoDialog;
     protected SharedPreferences sharedPrefs;
+    protected long startTime, endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,8 +19,9 @@ import java.util.ArrayList;
 public class TestListActivity extends ListActivity {
     private ArrayList<Test> mTests = new ArrayList<Test>();
     private Intent startIntent;
-
+    private Button mSendButton;
     TestAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,51 +33,66 @@ public class TestListActivity extends ListActivity {
         mTests.add(new Test("Badanie sekwencji"));
         adapter = new TestAdapter(this, mTests);
         setListAdapter(adapter);
+        mSendButton = (Button)findViewById(R.id.sendData);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 0) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
+
+        if (resultCode == RESULT_OK) {
                 mTests.get(requestCode).setDone(true);
             }
             adapter.notifyDataSetChanged();
-//        }
+
+            if(isAllDone())
+                mSendButton.setEnabled(true);
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
-        switch (position){
+        switch (position) {
             case 1:
-                if (!mTests.get(position-1).isDone()) {
+                if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, TapActivity.class);
                     startActivityForResult(startIntent, 0);
                 }
                 break;
             case 2:
-                if (!mTests.get(position-1).isDone()) {
+                if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, PanActivity.class);
                     startActivityForResult(startIntent, 1);
                 }
                 break;
             case 3:
-                if (!mTests.get(position-1).isDone()) {
+                if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, ZoomActivity.class);
                     startActivityForResult(startIntent, 2);
                 }
                 break;
             case 4:
-                if (!mTests.get(position-1).isDone()) {
+                if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, SequenceActivity.class);
                     startActivityForResult(startIntent, 3);
                 }
                 break;
         }
+    }
+
+    public void sendData(View v){
+        Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
 
     }
+
+    private boolean isAllDone(){
+        for(int i = 0; i<mTests.size()-1; i++){
+            if(!mTests.get(i).isDone())
+                return false;
+        }
+        return true;
+    }
+
     private class TestAdapter extends ArrayAdapter<Test> {
         Context context;
         public TestAdapter(Context context, ArrayList<Test> tests){

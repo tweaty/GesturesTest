@@ -6,11 +6,12 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.tweaty.gesturestest.TestListActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView android:text="@string/test_list" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/abc_text_size_display_1_material" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -19,8 +20,8 @@
         android:layout_below="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="46dp"
-        android:layout_above="@+id/button3"
+        android:layout_marginTop="30dp"
+        android:layout_above="@+id/sendData"
         android:clickable="false"
         android:dividerHeight="1dp"
         android:drawSelectorOnTop="false"
@@ -31,23 +32,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/send_data"
+        android:id="@+id/sendData"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:onClick="sendData"
+        android:enabled="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_tests"
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@android:id/list"
-        android:layout_alignEnd="@android:id/list" />
+        android:layout_alignEnd="@android:id/list"
+        android:layout_marginTop="15dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

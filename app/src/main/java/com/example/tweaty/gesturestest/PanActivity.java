@@ -1,6 +1,7 @@
 package com.example.tweaty.gesturestest;
 
 import android.os.Bundle;
+import android.util.Log;
 
 
 public class PanActivity extends TestActivity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
@@ -19,16 +20,26 @@ public class PanActivity extends TestActivity implements InfoDialog.InfoDialogLi
         Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize);
         pan.setListener(this);
         mFrame.addView(pan);
+        startTime = System.currentTimeMillis();
     }
 
     @Override
     public void onActionComplete() {
         counter++;
-        text.setText(msg + " " + counter + " z " + mTestsNumber);
-        if (counter >= mTestsNumber) {
+
+        endTime = System.currentTimeMillis() - startTime;
+        startTime = System.currentTimeMillis();
+        Log.i("Time", String.valueOf(endTime));
+
+        if (counter > mTestsNumber){
 
             setResult(RESULT_OK);
             finish();
+        }
+        else{
+
+            text.setText(msg + " " + counter + " z " + mTestsNumber);
+
         }
     }
 }

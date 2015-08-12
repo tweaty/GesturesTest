@@ -1,6 +1,7 @@
 package com.example.tweaty.gesturestest;
 
 import android.os.Bundle;
+import android.util.Log;
 
 
 public class ZoomActivity extends TestActivity implements InfoDialog.InfoDialogListener, IsActionCompleteListener {
@@ -26,16 +27,26 @@ public class ZoomActivity extends TestActivity implements InfoDialog.InfoDialogL
         Zoom zoom = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight, mTolerance);
         zoom.setListener(this);
         mFrame.addView(zoom);
+        startTime = System.currentTimeMillis();
     }
 
     @Override
     public void onActionComplete() {
         counter++;
-        text.setText(msg + " " + counter + " z " + mTestsNumber);
-        if (counter >= mTestsNumber){
+
+        endTime = System.currentTimeMillis() - startTime;
+        startTime = System.currentTimeMillis();
+        Log.i("Time", String.valueOf(endTime));
+
+        if (counter > mTestsNumber){
 
             setResult(RESULT_OK);
             finish();
+        }
+        else{
+
+            text.setText(msg + " " + counter + " z " + mTestsNumber);
+
         }
     }
 }

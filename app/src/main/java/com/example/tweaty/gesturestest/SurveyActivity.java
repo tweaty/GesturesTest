@@ -1,14 +1,12 @@
 package com.example.tweaty.gesturestest;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.UUID;
@@ -18,6 +16,7 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
 
     private Button bAge;
     private EditText editText;
+    private RadioButton rbMen, rbWomen, rbYes, rbNo;
     private int mAge = 0;
     private String id = UUID.randomUUID().toString();
     @Override
@@ -25,7 +24,11 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         bAge = (Button)findViewById(R.id.bAge);
-        editText = (EditText)findViewById(R.id.editText);
+        rbMen = (RadioButton) findViewById(R.id.rbMen);
+        rbWomen = (RadioButton) findViewById(R.id.rbWomen);
+        rbYes = (RadioButton) findViewById(R.id.rbYes);
+        rbNo = (RadioButton) findViewById(R.id.rbNo);
+        editText = (EditText)findViewById(R.id.editTextId);
         editText.setText(id);
     }
 
@@ -50,8 +53,14 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
         if (mAge == 0){
             Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
         }else{
+            DataHolder dh = DataHolder.getInstance();
+            dh.setId(id);
+            dh.setAge(mAge);
+            dh.setSex( (rbMen.isChecked())? "Mê¿czyzna" : "Kobieta" );
+            dh.setUsigSmartphone( rbYes.isChecked() );
             Intent startIntent = new Intent(this, TestListActivity.class);
             startActivity(startIntent);
+            finish();
         }
 
     }

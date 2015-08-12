@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:text="@string/probe_counter"
         android:layout_marginLeft="16dp"
-        android:textColor="#ff000000"
+        android:textColor="#ff0000"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentStart="false"
+        android:textStyle="bold" />
 
 </RelativeLayout>
