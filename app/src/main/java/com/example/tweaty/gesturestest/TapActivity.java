@@ -1,6 +1,5 @@
 package com.example.tweaty.gesturestest;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,22 +23,20 @@ public class TapActivity extends TestActivity implements InfoDialog.InfoDialogLi
     }
 
     @Override
-    public void onActionComplete() {
+    //public void onActionComplete() {
+    public void onActionComplete(boolean isCorrect, int precision) {
+        time = System.currentTimeMillis() - startTime;
+        Log.i("Time", String.valueOf(time));
+        DataHolder.getInstance().addTest(new TestData(1, counter, time, isCorrect, precision));
         counter++;
-
-        endTime = System.currentTimeMillis() - startTime;
-        startTime = System.currentTimeMillis();
-        Log.i("Time", String.valueOf(endTime));
-
         if (counter > mTestsNumber){
-
             setResult(RESULT_OK);
             finish();
+            //DataHolder.getInstance(); do sprawdzania brakepoint
         }
         else{
-
             text.setText(msg + " " + counter + " z " + mTestsNumber);
-
+            startTime = System.currentTimeMillis();
         }
     }
 

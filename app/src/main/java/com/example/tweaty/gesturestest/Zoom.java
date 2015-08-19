@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -14,11 +13,11 @@ import android.view.View;
 import java.util.Random;
 
 public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureListener{
-    private ScaleGestureDetector mDetetor;
+    private ScaleGestureDetector mDetector;
     private Paint paint1 = new Paint();
     private Paint paint2 = new Paint();
     private float mX, mY, mX2, mY2, mSize1, mSize2, mResize, mWidth, mHeight;
-    private float mRange;
+    private float mTolerance;
     private float mScaleFactor = 1.0f;
     private Random random = new Random();
     private boolean zoomIn;
@@ -30,8 +29,8 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
         paint2.setColor(Color.RED);
         mWidth = width;
         mHeight = height;
-        mRange = tolerance;
-        mDetetor = new ScaleGestureDetector(getContext(), this);
+        mTolerance = tolerance;
+        mDetector = new ScaleGestureDetector(getContext(), this);
         randomZoomOption();
     }
 
@@ -66,13 +65,13 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     }
 
     public boolean isInRange(float distance) {
-        if (distance <= mRange) return true;
+        if (distance <= mTolerance) return true;
         else return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mDetetor.onTouchEvent(event);
+        mDetector.onTouchEvent(event);
         return true;
     }
 
@@ -81,8 +80,8 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
         mX = ((mWidth/2)-(mSize1/2));
         mY = ((mHeight/2)-(mSize1/2));
-        mX2 = ((mWidth/2)-(mResize /2)); // moga wystepowaæ wartoœci typu 18.5
-        mY2 = ((mHeight/2)-(mResize /2)); // to samo
+        mX2 = Math.round((mWidth/2)-(mResize /2)); // moga wystepowaæ wartoœci typu 18.5
+        mY2 = Math.round((mHeight / 2) - (mResize / 2)); // to samo
 
         if (zoomIn){
             canvas.drawRect(mX, mY, mX + mSize1, mY + mSize1, paint1);
@@ -101,7 +100,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
         // Don't let the object get too small or too large.
         mScaleFactor = Math.max(0.25f, Math.min(mScaleFactor, 2.5f));
-        mResize = (int)(mSize2 * mScaleFactor);
+        mResize = Math.round(mSize2 * mScaleFactor);
         invalidate();
 
         return true;
@@ -116,10 +115,10 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
     @Override
     public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        float distance = HelperClass.distance(mX, mY, mX2, mY2);
-        boolean tolerance = isInRange(distance);
-        Log.i("statystyki", "distance: " + distance + " tolerancja: " + String.valueOf(tolerance));
-        listener.onActionComplete();
+        float precision = HelperClass.distance(mX, mY, mX2, mY2);
+        boolean isCorrect = isInRange(precision);
+        Log.i("statystyki", "distance: " + precision + " tolerancja: " + String.valueOf(isCorrect));
+        listener.onActionComplete(isCorrect, (int) precision);
         randomZoomOption();
         invalidate();
         Log.i("start", "koniec");

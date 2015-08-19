@@ -10,12 +10,13 @@ import android.view.MotionEvent;
 
 public class Pan extends Tap {
     Paint paint2 = new Paint();
-    float mX2, mY2;
+    float mX2, mY2, mX2center, mY2center, mTolercance;
     private boolean isIntersect = false;
 
 
-    Pan(Context context, float width, float height, int size) {
+    Pan(Context context, float width, float height, int size, float tolerance) {
         super(context, width, height, size);
+        this.mTolercance = tolerance;
         paint2.setColor(Color.BLACK);
         setCo2(randomPlace());
     }
@@ -23,6 +24,8 @@ public class Pan extends Tap {
     public void setCo2(Point p){
         mX2 = p.x;
         mY2 = p.y;
+        mX2center = mX2 + mSize/2;
+        mY2center = mY2 + mSize/2;
     }
 
     public boolean intersectSecond(){
@@ -34,7 +37,7 @@ public class Pan extends Tap {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(mX2,mY2, mX2+mSize, mY2+mSize, paint2);
+        canvas.drawRect(mX2, mY2, mX2 + mSize, mY2 + mSize, paint2);
         canvas.drawText("2", (mX2 + mSize / 2), mY2 + mSize / 2 - ((text.descent() + text.ascent()) / 2), text);
         super.onDraw(canvas);
     }
@@ -63,8 +66,11 @@ public class Pan extends Tap {
             case MotionEvent.ACTION_UP:
                 if (isIntersect) {
                     isIntersect = false;
-                    Log.i("IntersectSEC", String.valueOf(intersectSecond()));
-                    listener.onActionComplete();
+                    int precision = (int)HelperClass.distance(mXcenter, mYcenter, mX2center, mY2center);
+                    boolean isCorrect = (precision <= mTolercance);
+                    Log.i("PAN IntersectSEC", String.valueOf(isCorrect));
+                    Log.i("PAN precision", String.valueOf(precision));
+                    listener.onActionComplete(isCorrect , precision);
                     setCo(randomPlace());
                     setCo2(randomPlace());
                     invalidate();

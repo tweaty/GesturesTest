@@ -17,7 +17,7 @@ public class TestActivity extends Activity{
     protected String msg;
     private InfoDialog infoDialog;
     protected SharedPreferences sharedPrefs;
-    protected long startTime, endTime;
+    protected long startTime, time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

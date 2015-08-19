@@ -42,13 +42,15 @@ public class SequenceActivity extends Activity implements InfoDialog.InfoDialogL
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Tap tap = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, 10);
+        Tap tap = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, 10, 20);
         tap.setListener(this);
+
         mFrame.addView(tap);
     }
 
     @Override
-    public void onActionComplete() {
+   // public void onActionComplete() {
+    public void onActionComplete(boolean isCorrect, int precision) {
         liczba++;
         text.setText(tekst + " " + liczba + " z " + 30);
     }

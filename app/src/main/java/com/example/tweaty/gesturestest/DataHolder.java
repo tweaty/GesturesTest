@@ -15,6 +15,10 @@ public class DataHolder {
         return ourInstance;
     }
 
+    public ArrayList<TestData> getTests() {
+        return tests;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

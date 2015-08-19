@@ -17,8 +17,8 @@
 
     <string name="pref_test_number_title">Liczba powtórzeń testu</string>
     <string name="pref_test_element_size_title">Wielkość badanego elementu</string>
-    <string name="pref_test_tolerance_title">Tolerancja błędu gestu PaS</string>
-
+    <string name="pref_test_toleranceTap_title">Tolerancja błędu gestu Tap</string>
+    <string name="pref_test_tolerancePaS_title">Tolerancja błędu gestu PaS</string>
     <string name="pref_sequence_title">Kolejność sekwencji</string>
     <string name="pref_sequence0_title">Pierwszy gest</string>
     <string name="pref_sequence1_title">Drugi gest</string>

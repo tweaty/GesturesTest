@@ -85,7 +85,8 @@ public class SettingsActivity extends PreferenceActivity {
         bindPreferenceSummaryToValue(findPreference("key_height_picker"));
         bindPreferenceSummaryToValue(findPreference("key_test_numeber"));
         bindPreferenceSummaryToValue(findPreference("key_element_size"));
-        bindPreferenceSummaryToValue(findPreference("key_tolerance"));
+        bindPreferenceSummaryToValue(findPreference("key_toleranceTap"));
+        bindPreferenceSummaryToValue(findPreference("key_tolerancePaS"));
         bindPreferenceSummaryToValue(findPreference("key_sequence0"));
         bindPreferenceSummaryToValue(findPreference("key_sequence1"));
         bindPreferenceSummaryToValue(findPreference("key_sequence2"));
@@ -233,7 +234,8 @@ public class SettingsActivity extends PreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("key_test_numeber"));
             bindPreferenceSummaryToValue(findPreference("key_element_size"));
-            bindPreferenceSummaryToValue(findPreference("key_tolerance"));
+            bindPreferenceSummaryToValue(findPreference("key_toleranceTap"));
+            bindPreferenceSummaryToValue(findPreference("key_tolerancePaS"));
             bindPreferenceSummaryToValue(findPreference("key_sequence0"));
             bindPreferenceSummaryToValue(findPreference("key_sequence1"));
             bindPreferenceSummaryToValue(findPreference("key_sequence2"));

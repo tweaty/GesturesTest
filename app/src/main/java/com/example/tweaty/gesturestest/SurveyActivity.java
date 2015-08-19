@@ -25,9 +25,9 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
         setContentView(R.layout.activity_survey);
         bAge = (Button)findViewById(R.id.bAge);
         rbMen = (RadioButton) findViewById(R.id.rbMen);
-        rbWomen = (RadioButton) findViewById(R.id.rbWomen);
+//        rbWomen = (RadioButton) findViewById(R.id.rbWomen);
         rbYes = (RadioButton) findViewById(R.id.rbYes);
-        rbNo = (RadioButton) findViewById(R.id.rbNo);
+//        rbNo = (RadioButton) findViewById(R.id.rbNo);
         editText = (EditText)findViewById(R.id.editTextId);
         editText.setText(id);
     }
@@ -48,13 +48,16 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
     public void onDialogNegativeClick(AgeDialog dialog) {
 
     }
-
+/*    public void onClickEditBox(View v){ // nie dziala czyszczenie
+        editText.setText("");
+    }*/
     public void onClickButton(View v){
         if (mAge == 0){
             Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
         }else{
             DataHolder dh = DataHolder.getInstance();
-            dh.setId(id);
+            dh.clearData();
+            dh.setId(editText.getText().toString());
             dh.setAge(mAge);
             dh.setSex( (rbMen.isChecked())? "Mê¿czyzna" : "Kobieta" );
             dh.setUsigSmartphone( rbYes.isChecked() );

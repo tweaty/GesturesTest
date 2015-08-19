@@ -17,10 +17,18 @@
         />
 
     <com.example.tweaty.gesturestest.NumberPickerPreference
-        android:key="key_tolerance"
-        android:title="@string/pref_test_tolerance_title"
+        android:key="key_toleranceTap"
+        android:title="@string/pref_test_toleranceTap_title"
+        android:defaultValue="20"
+        max="50"
+        min="0"
+        />
+
+    <com.example.tweaty.gesturestest.NumberPickerPreference
+        android:key="key_tolerancePaS"
+        android:title="@string/pref_test_tolerancePaS_title"
         android:defaultValue="5"
-        max="20"
+        max="50"
         min="0"
         />
     <PreferenceScreen

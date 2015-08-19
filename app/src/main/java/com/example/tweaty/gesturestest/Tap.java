@@ -20,7 +20,7 @@ public class Tap extends View{
     Context context;
     Paint paint = new Paint();
     Paint text = new Paint();
-    float mX, mY, mWidth, mHeight;
+    float mX, mY, mWidth, mHeight, mXcenter, mYcenter;
     float mSize;
     IsActionCompleteListener listener;
 
@@ -46,10 +46,14 @@ public class Tap extends View{
     public void setCo(float x, float y){
         mX = x;
         mY = y;
+        mXcenter = mX + mSize/2;
+        mYcenter = mY + mSize/2;
     }
     public void setCo(Point p){
         mX = p.x;
         mY = p.y;
+        mXcenter = mX + mSize/2;
+        mYcenter = mY + mSize/2;
     }
 
     public Point randomPlace(){
@@ -69,21 +73,22 @@ public class Tap extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawRect(mX, mY, mX +mSize, mY+mSize, paint);
-        canvas.drawText("1", (mX+mSize/2), mY+mSize/2  - ((text.descent() + text.ascent()) / 2), text);
+        canvas.drawText("1", mXcenter, (mYcenter - ((text.descent() + text.ascent()) / 2)), text);
     }
     public boolean intersect(float x, float y){
         return x >= mX && x <= mX + mSize && y >= mY && y <= mY + mSize;
     }
-
+/*    public int distance(float x2, float y2){
+        return (int) Math.sqrt( Math.pow((mXcenter - x2), 2) + Math.pow((mYcenter-y2), 2));
+    }*/
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        if (this.intersect(event.getX(), event.getY()))
-            Log.i("Intersect", "YES");
-        else
-            Log.i("Intersect", "NO");
+        boolean isCorrect = intersect(event.getX(), event.getY());
+        int precision = (int) HelperClass.distance(mXcenter, mYcenter, event.getX(), event.getY());
+        Log.i("TAP Intersect", String.valueOf(isCorrect));
+        Log.i("TAP precision", String.valueOf(precision));
         setCo(randomPlace());
-        listener.onActionComplete();
+        listener.onActionComplete(isCorrect, precision);
         invalidate();
         return super.onTouchEvent(event);
     }
