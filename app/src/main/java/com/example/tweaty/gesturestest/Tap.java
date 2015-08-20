@@ -22,13 +22,18 @@ public class Tap extends View{
     Paint text = new Paint();
     float mX, mY, mWidth, mHeight, mXcenter, mYcenter;
     float mSize;
-    IsActionCompleteListener listener;
 
-    Tap(Context context, float width, float height, int size){
+    protected IsActionCompleteListener listener;
+    public void setListener(IsActionCompleteListener listener){
+        this.listener = listener;
+    }
+
+    Tap(Context context, float width, float height, int size, IsActionCompleteListener listener){
         super(context);
         this.context = context;
         mWidth = width;
         mHeight = height;
+        setListener(listener);
         paint.setColor(Color.RED);
         text.setColor(Color.WHITE);
         text.setTextSize(50);
@@ -39,9 +44,6 @@ public class Tap extends View{
         setCo(randomPlace());
     }
 
-    public void setListener(IsActionCompleteListener listener){
-        this.listener = listener;
-    }
 
     public void setCo(float x, float y){
         mX = x;

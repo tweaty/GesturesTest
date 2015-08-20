@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -29,6 +30,7 @@ public class TestListActivity extends ListActivity {
     private Intent startIntent;
     private Button mSendButton;
     private int mFormat;
+    private String fileUri, email;
     TestAdapter adapter;
 
     @Override
@@ -50,6 +52,7 @@ public class TestListActivity extends ListActivity {
         SharedPreferences sharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
         mFormat = Integer.parseInt(sharedPrefs.getString("key_format", "0"));
+        email = sharedPrefs.getString("key_email", "test@test.pl");
     }
 
     @Override
@@ -97,8 +100,19 @@ public class TestListActivity extends ListActivity {
     }
 
     public void sendData(View v){
-        Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
 
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        //emailIntent.setType("vnd.android.cursor.dir/email");//"vnd.android.cursor.dir/email"
+        emailIntent.setData(Uri.parse("mailto:")); // tylko programy do wysylania maili, dziala tylko z ACTION_SENDTO
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.email_subject));
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getResources().getString(R.string.email_text));
+        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileUri));
+        startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.send_email)));
+    }
+
+    public void finishTest(View v){
+        finish();
     }
 
     private boolean isAllDone(){
@@ -106,11 +120,20 @@ public class TestListActivity extends ListActivity {
             if(!mTests.get(i).isDone())
                 return false;
         }
-        if (mFormat == 0)
-            SaveDataToCsv();
+        if (isExternalStorageWritable()) {
+            if (mFormat == 0)
+                SaveDataToCsv();
+            else if (mFormat == 1)
+                SaveDataToXml();
+            else {
+                SaveDataToXml();
+                SaveDataToCsv();
+            }
+        }
         else
-            SaveDataToXml();
-
+        {
+            Toast.makeText(getApplicationContext(), R.string.storage_error, Toast.LENGTH_LONG).show();
+        }
         return true;
     }
 
@@ -122,6 +145,7 @@ public class TestListActivity extends ListActivity {
         return false;
     }
 
+
     private void SaveDataToCsv() {
         DataHolder dh = DataHolder.getInstance();
         String root = Environment.getExternalStorageDirectory().toString();
@@ -129,26 +153,24 @@ public class TestListActivity extends ListActivity {
         myDir.mkdirs();
         String fname = dh.getId() +".csv";
         File file = new File (myDir, fname);
+        fileUri = myDir + "/" + fname;
         String header = "id,wiek,plec,smartphone,testId,nrproby,czas,poprawnosc,precyzja,typ1,czas1,poprawnosc1,precyzja1,typ2,czas2,poprawnosc2,precyzja2,typ3,czas3,poprawnosc3,precyzja3\n";
         if (file.exists()) file.delete ();
         try {
             FileOutputStream out = new FileOutputStream(file);
             out.write(header.getBytes());
-            //out.flush();
             StringBuilder sb = new StringBuilder();
-            ArrayList<TestData> tests = dh.getTests();
             for (TestData td : dh.getTests()){
                 sb.append(dh.getId()).append(",").append(dh.getAge()).append(",").append(dh.getSex())
                         .append(",").append(dh.isUsigSmartphone()).append(",").append(td.getTestId())
                         .append(",").append(td.getTestNumber()).append(",").append(td.getTestTime()).
-                        append(",").append(td.isCorrect()).append(",").append(td.getPrecision()).append(",");
+                        append(",").append(td.isCorrect()).append(",").append(td.getPrecision());
                 for (TestData data: td.sequences){
-                    sb.append(data.getTestId()).append(",").append(data.getTestTime()).append(",").
-                            append(data.isCorrect()).append(",").append(data.getPrecision()).append(",");
+                    sb.append(",").append(data.getTestId()).append(",").append(data.getTestTime()).append(",").
+                            append(data.isCorrect()).append(",").append(data.getPrecision());
                 }
                 sb.append("\n");
                 out.write(sb.toString().getBytes());
-                //out.flush();
                 sb.delete(0,sb.length());
             }
             out.flush();
@@ -166,6 +188,7 @@ public class TestListActivity extends ListActivity {
         myDir.mkdirs();
         String fname = dh.getId() +".xml";
         File file = new File (myDir, fname);
+        fileUri = myDir + "/" + fname;
         if (file.exists()) file.delete ();
         try {
             XmlSerializer serializer = Xml.newSerializer();
@@ -197,31 +220,31 @@ public class TestListActivity extends ListActivity {
                     serializer.startTag("", "Czas");
                     serializer.text(String.valueOf(td.getTestTime()));
                     serializer.endTag("", "Czas");
-                    if(td.getTestId() != 4) {
-                        serializer.startTag("", "Poprawnosc");
-                        serializer.text(String.valueOf(td.isCorrect()));
-                        serializer.endTag("", "Poprawnosc");
-                        serializer.startTag("", "Precyzja");
-                        serializer.text(String.valueOf(td.getPrecision()));
-                        serializer.endTag("", "Precyzja");
-                    } else {
-                        for (TestData data : td.sequences){
-                            serializer.startTag("", "Test");
-                                serializer.startTag("", "TestId");
-                                serializer.text(String.valueOf(data.getTestId()));
-                                serializer.endTag("", "TestId");
-                                serializer.startTag("", "Czas");
-                                serializer.text(String.valueOf(data.getTestTime()));
-                                serializer.endTag("", "Czas");
-                                serializer.startTag("", "Poprawnosc");
-                                serializer.text(String.valueOf(data.isCorrect()));
-                                serializer.endTag("", "Poprawnosc");
-                                serializer.startTag("", "Precyzja");
-                                serializer.text(String.valueOf(data.getPrecision()));
-                                serializer.endTag("", "Precyzja");
-                            serializer.endTag("", "Test");
-                        }
+                if(td.getTestId() != 4) {
+                    serializer.startTag("", "Poprawnosc");
+                    serializer.text(String.valueOf(td.isCorrect()));
+                    serializer.endTag("", "Poprawnosc");
+                    serializer.startTag("", "Precyzja");
+                    serializer.text(String.valueOf(td.getPrecision()));
+                    serializer.endTag("", "Precyzja");
+                } else {
+                    for (TestData data : td.sequences){
+                        serializer.startTag("", "Test");
+                            serializer.startTag("", "TestId");
+                            serializer.text(String.valueOf(data.getTestId()));
+                            serializer.endTag("", "TestId");
+                            serializer.startTag("", "Czas");
+                            serializer.text(String.valueOf(data.getTestTime()));
+                            serializer.endTag("", "Czas");
+                            serializer.startTag("", "Poprawnosc");
+                            serializer.text(String.valueOf(data.isCorrect()));
+                            serializer.endTag("", "Poprawnosc");
+                            serializer.startTag("", "Precyzja");
+                            serializer.text(String.valueOf(data.getPrecision()));
+                            serializer.endTag("", "Precyzja");
+                        serializer.endTag("", "Test");
                     }
+                }
                 serializer.endTag("", "Test");
             }
             serializer.endTag("", "GesturesTest");

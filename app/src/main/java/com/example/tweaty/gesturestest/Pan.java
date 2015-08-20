@@ -14,8 +14,8 @@ public class Pan extends Tap {
     private boolean isIntersect = false;
 
 
-    Pan(Context context, float width, float height, int size, float tolerance) {
-        super(context, width, height, size);
+    Pan(Context context, float width, float height, int size, float tolerance , IsActionCompleteListener listener) {
+        super(context, width, height, size, listener);
         this.mTolercance = tolerance;
         paint2.setColor(Color.BLACK);
         setCo2(randomPlace());

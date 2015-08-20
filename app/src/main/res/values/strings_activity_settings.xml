@@ -17,7 +17,7 @@
 
     <string name="pref_test_number_title">Liczba powtórzeń testu</string>
     <string name="pref_test_element_size_title">Wielkość badanego elementu</string>
-    <string name="pref_test_toleranceTap_title">Tolerancja błędu gestu Tap</string>
+    <string name="pref_test_toleranceTap_title">Tolerancja błędu gestu Pan</string>
     <string name="pref_test_tolerancePaS_title">Tolerancja błędu gestu PaS</string>
     <string name="pref_sequence_title">Kolejność sekwencji</string>
     <string name="pref_sequence0_title">Pierwszy gest</string>
@@ -42,10 +42,12 @@
     <string-array name="pref_format_entries">
         <item>CSV</item>
         <item>XML</item>
+        <item>CSV &amp; XML</item>
     </string-array>
     <string-array name="pref_format_values">
         <item>0</item>
         <item>1</item>
+        <item>2</item>
     </string-array>
 
     <string name="pref_email_title">Email</string>

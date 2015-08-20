@@ -16,8 +16,8 @@ public class TapActivity extends TestActivity implements InfoDialog.InfoDialogLi
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Tap tap = new Tap(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize);
-        tap.setListener(this);
+        Tap tap = new Tap(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize, this);
+        //tap.setListener(this);
         mFrame.addView(tap);
         startTime = System.currentTimeMillis();
     }

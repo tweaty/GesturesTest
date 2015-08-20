@@ -17,7 +17,7 @@
         />
 
     <com.example.tweaty.gesturestest.NumberPickerPreference
-        android:key="key_toleranceTap"
+        android:key="key_tolerancePan"
         android:title="@string/pref_test_toleranceTap_title"
         android:defaultValue="20"
         max="50"

@@ -17,15 +17,15 @@ public class PanActivity extends TestActivity implements InfoDialog.InfoDialogLi
     @Override
     protected void initSettings() {
         super.initSettings();
-        mTolerance = sharedPrefs.getInt("key_toleranceTap", 5);
+        mTolerance = sharedPrefs.getInt("key_tolerancePan", 5);
     }
 
     @Override
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize, mTolerance);
-        pan.setListener(this);
+        Pan pan = new Pan(getApplicationContext(), mDisplayWidth, mDisplayHeight, mSize, mTolerance, this);
+//        pan.setListener(this);
         mFrame.addView(pan);
         startTime = System.currentTimeMillis();
     }

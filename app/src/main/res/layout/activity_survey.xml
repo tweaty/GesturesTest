@@ -63,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
-        android:layout_alignTop="@+id/textView4">
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/textView2">
 
         <RadioButton
             android:id="@+id/rbWomen"
@@ -144,7 +145,6 @@
         android:layout_alignStart="@+id/radioGroup"
         android:layout_below="@+id/radioGroup"
         android:layout_marginTop="22dp"
-        android:layout_toRightOf="@+id/textView5"
         android:gravity="center"
         android:minHeight="10dp"
         android:onClick="showAgeDialog"
@@ -152,7 +152,9 @@
         android:paddingRight="0dp"
         android:singleLine="true"
         android:text="@string/age_btn"
-        android:textSize="@dimen/abc_text_size_medium_material" />
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/textView2" />
 
 
 </RelativeLayout>

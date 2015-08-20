@@ -33,4 +33,8 @@
     <string name="end_tests">Zakończ badnia</string>
     <string name="start_tests">Rozpocznij badania</string>
     <string name="age_btn">Wybierz</string>
+    <string name="send_email">Wyślij wyniki badań</string>
+    <string name="email_subject">Wyniki badania gestów i sekwencji</string>
+    <string name="email_text">W załączniku znajdują się wyniki przeprowadzonych badań.</string>
+    <string name="storage_error">Problem z dostępem do pamieęci urządzenia.</string>
 </resources>

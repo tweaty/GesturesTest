@@ -10,10 +10,11 @@
         android:id="@+id/name"
         android:paddingLeft="16dp"
         android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingBottom="15dp" />
+        android:layout_toEndOf="@+id/isDoneCheckBox"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -21,11 +22,10 @@
         android:id="@+id/isDoneCheckBox"
         android:enabled="false"
         android:focusable="false"
-        android:paddingRight="15dp"
         android:paddingBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/name"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>

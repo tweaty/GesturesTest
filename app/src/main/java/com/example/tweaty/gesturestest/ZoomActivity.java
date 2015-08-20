@@ -24,8 +24,8 @@ public class ZoomActivity extends TestActivity implements InfoDialog.InfoDialogL
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
-        Zoom zoom = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight, mTolerance);
-        zoom.setListener(this);
+        Zoom zoom = new Zoom(getApplicationContext(), mDisplayWidth, mDisplayHeight, mTolerance, this);
+        //zoom.setListener(this);
         mFrame.addView(zoom);
         startTime = System.currentTimeMillis();
     }

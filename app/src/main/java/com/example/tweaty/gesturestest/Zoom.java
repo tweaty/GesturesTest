@@ -21,22 +21,24 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     private float mScaleFactor = 1.0f;
     private Random random = new Random();
     private boolean zoomIn;
-    IsActionCompleteListener listener;
 
-    Zoom(Context context, float width, float height, float tolerance){
+    protected IsActionCompleteListener listener;
+    public void setListener(IsActionCompleteListener listener){
+        this.listener = listener;
+    }
+
+    Zoom(Context context, float width, float height, float tolerance, IsActionCompleteListener listener){
         super(context);
         paint1.setColor(Color.BLACK);
         paint2.setColor(Color.RED);
         mWidth = width;
         mHeight = height;
         mTolerance = tolerance;
+        setListener(listener);
         mDetector = new ScaleGestureDetector(getContext(), this);
         randomZoomOption();
     }
 
-    public void setListener(IsActionCompleteListener listener){
-        this.listener = listener;
-    }
 
     public void randomZoomOption(){
         zoomIn = random.nextBoolean();

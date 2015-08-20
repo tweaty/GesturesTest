@@ -48,9 +48,11 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
     public void onDialogNegativeClick(AgeDialog dialog) {
 
     }
+
 /*    public void onClickEditBox(View v){ // nie dziala czyszczenie
         editText.setText("");
     }*/
+
     public void onClickButton(View v){
         if (mAge == 0){
             Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
