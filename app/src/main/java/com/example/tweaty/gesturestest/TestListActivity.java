@@ -27,10 +27,10 @@ import java.util.ArrayList;
 
 public class TestListActivity extends ListActivity {
     private ArrayList<Test> mTests = new ArrayList<Test>();
-    private Intent startIntent;
     private Button mSendButton;
     private int mFormat;
     private String fileUri, email;
+    ArrayList<Uri> attachments = new ArrayList<>();
     TestAdapter adapter;
 
     @Override
@@ -60,7 +60,7 @@ public class TestListActivity extends ListActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-                mTests.get(requestCode).setDone(true);
+                mTests.get(requestCode-1).setDone(true);
             }
             adapter.notifyDataSetChanged();
 
@@ -73,27 +73,28 @@ public class TestListActivity extends ListActivity {
 
         switch (position) {
             case 1:
+                Intent startIntent;
                 if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, TapActivity.class);
-                    startActivityForResult(startIntent, 0);
+                    startActivityForResult(startIntent, 1);
                 }
                 break;
             case 2:
                 if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, PanActivity.class);
-                    startActivityForResult(startIntent, 1);
+                    startActivityForResult(startIntent, 2);
                 }
                 break;
             case 3:
                 if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, ZoomActivity.class);
-                    startActivityForResult(startIntent, 2);
+                    startActivityForResult(startIntent, 3);
                 }
                 break;
             case 4:
                 if (!mTests.get(position - 1).isDone()) {
                     startIntent = new Intent(this, SequenceActivity.class);
-                    startActivityForResult(startIntent, 3);
+                    startActivityForResult(startIntent, 4);
                 }
                 break;
         }
@@ -101,13 +102,16 @@ public class TestListActivity extends ListActivity {
 
     public void sendData(View v){
 
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+//        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE); // do zalaczenia wielu plikow, nie dziala wtedy mailto:
         //emailIntent.setType("vnd.android.cursor.dir/email");//"vnd.android.cursor.dir/email"
-        emailIntent.setData(Uri.parse("mailto:")); // tylko programy do wysylania maili, dziala tylko z ACTION_SENDTO
+        emailIntent.setType("message/rfc822");
+//        emailIntent.setData(Uri.parse("mailto:")); // tylko programy do wysylania maili, dziala tylko z ACTION_SENDTO, mie dziala z action_send_multiple
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.email_subject));
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getResources().getString(R.string.email_text));
-        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileUri));
+//        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileUri));
+        emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments); // dodaje liste zawierajaca uri do plikow
         startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.send_email)));
     }
 
@@ -116,7 +120,7 @@ public class TestListActivity extends ListActivity {
     }
 
     private boolean isAllDone(){
-        for(int i = 0; i<mTests.size()-1; i++){
+        for(int i = 0; i<mTests.size(); i++){
             if(!mTests.get(i).isDone())
                 return false;
         }
@@ -154,6 +158,7 @@ public class TestListActivity extends ListActivity {
         String fname = dh.getId() +".csv";
         File file = new File (myDir, fname);
         fileUri = myDir + "/" + fname;
+        attachments.add(Uri.parse("file://" + myDir + "/" + fname));
         String header = "id,wiek,plec,smartphone,testId,nrproby,czas,poprawnosc,precyzja,typ1,czas1,poprawnosc1,precyzja1,typ2,czas2,poprawnosc2,precyzja2,typ3,czas3,poprawnosc3,precyzja3\n";
         if (file.exists()) file.delete ();
         try {
@@ -189,6 +194,7 @@ public class TestListActivity extends ListActivity {
         String fname = dh.getId() +".xml";
         File file = new File (myDir, fname);
         fileUri = myDir + "/" + fname;
+        attachments.add(Uri.parse("file://" + myDir + "/" + fname));
         if (file.exists()) file.delete ();
         try {
             XmlSerializer serializer = Xml.newSerializer();

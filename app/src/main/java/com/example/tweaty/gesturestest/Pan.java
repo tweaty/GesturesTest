@@ -54,11 +54,11 @@ public class Pan extends Tap {
                         this.setCo(x-50, y-50);
                         this.invalidate();
                     }*/
-                Log.i("Intersect", String.valueOf(isIntersect));
+                //Log.i("Intersect", String.valueOf(isIntersect));
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isIntersect) {
-                    Log.i("test", "x: " + x + "; y: " + y);
+                    //Log.i("test", "x: " + x + "; y: " + y);
                     setCo(x - mSize/2, y - mSize/2);
                     invalidate();
                 }

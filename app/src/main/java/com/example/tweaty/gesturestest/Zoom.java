@@ -55,14 +55,14 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
     public void setSize1(float size){ // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel, cos nie dziala jak nalezy
         mSize1 = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
-        Log.i("DPI", " size: " + mSize1);
+        //Log.i("DPI", " size: " + mSize1);
 
     }
 
     public void setSize2(float size) { // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel, cos nie dziala jak nalezy
         mSize2 = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
         mResize = mSize2;
-        Log.i("DPI", " size: " + mSize2);
+        //Log.i("DPI", " size: " + mSize2);
 
     }
 
@@ -93,7 +93,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
             canvas.drawRect(mX, mY, mX + mSize1, mY + mSize1, paint1);
         }
 
-        Log.i("draw", "x1:" + mX + " y1:" + mY + " x2:"+mX2+" y2:"+mY+" size1:"+mSize1+" mResize:" + mResize);
+        //Log.i("draw", "x1:" + mX + " y1:" + mY + " x2:"+mX2+" y2:"+mY+" size1:"+mSize1+" mResize:" + mResize);
     }
 
     @Override
@@ -119,7 +119,9 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         float precision = HelperClass.distance(mX, mY, mX2, mY2);
         boolean isCorrect = isInRange(precision);
-        Log.i("statystyki", "distance: " + precision + " tolerancja: " + String.valueOf(isCorrect));
+        Log.i("PaS", "distance: " + precision + " tolerancja: " + String.valueOf(isCorrect));
+
+
         listener.onActionComplete(isCorrect, (int) precision);
         randomZoomOption();
         invalidate();

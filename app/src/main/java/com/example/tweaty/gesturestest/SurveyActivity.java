@@ -16,7 +16,7 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
 
     private Button bAge;
     private EditText editText;
-    private RadioButton rbMen, rbWomen, rbYes, rbNo;
+    private RadioButton rbMen, rbYes;
     private int mAge = 0;
     private String id = UUID.randomUUID().toString();
     @Override
@@ -25,9 +25,7 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
         setContentView(R.layout.activity_survey);
         bAge = (Button)findViewById(R.id.bAge);
         rbMen = (RadioButton) findViewById(R.id.rbMen);
-//        rbWomen = (RadioButton) findViewById(R.id.rbWomen);
         rbYes = (RadioButton) findViewById(R.id.rbYes);
-//        rbNo = (RadioButton) findViewById(R.id.rbNo);
         editText = (EditText)findViewById(R.id.editTextId);
         editText.setText(id);
     }

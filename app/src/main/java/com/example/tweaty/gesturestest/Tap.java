@@ -40,7 +40,7 @@ public class Tap extends View{
         text.setTextAlign(Paint.Align.CENTER);
         text.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         setSize(size);
-        Log.i("pref", "size: " + size);
+        //Log.i("pref", "size: " + size);
         setCo(randomPlace());
     }
 
@@ -59,18 +59,18 @@ public class Tap extends View{
     }
 
     public Point randomPlace(){
-        Log.i("test", "size: " + mSize);
+        //Log.i("test", "size: " + mSize);
         Random r = new Random();
-        Log.i("test", "width: " + mWidth + "; height: " + mHeight);
+        //Log.i("test", "width: " + mWidth + "; height: " + mHeight);
         int xx = r.nextInt((int)(mWidth-mSize));
         int yy = r.nextInt((int)(mHeight-mSize));
-        Log.i("test", "x: " + xx + "; y: " + yy);
+        //Log.i("test", "x: " + xx + "; y: " + yy);
         return new Point(xx, yy);
     }
 
     public void setSize(float size){ // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel
         mSize = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
-        Log.i("DPI", " size: " + mSize);
+        //Log.i("DPI", " size: " + mSize);
     }
     @Override
     protected void onDraw(Canvas canvas) {
