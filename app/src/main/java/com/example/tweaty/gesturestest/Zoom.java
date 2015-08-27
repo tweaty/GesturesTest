@@ -82,7 +82,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
         mX = ((mWidth/2)-(mSize1/2));
         mY = ((mHeight/2)-(mSize1/2));
-        mX2 = Math.round((mWidth/2)-(mResize /2)); // moga wystepowaæ wartoœci typu 18.5
+        mX2 = Math.round((mWidth/2)-(mResize /2)); // moga wystepowac wartosci typu 18.5
         mY2 = Math.round((mHeight / 2) - (mResize / 2)); // to samo
 
         if (zoomIn){
