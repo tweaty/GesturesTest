@@ -1,33 +1,33 @@
 <resources>
-    <string name="app_name">Gestures Test</string>
+    <string name="app_name">Badanie gestów</string>
 
 
     <string name="action_settings">Settings</string>
     <string name="start">Badanie</string>
     <string name="settings">Ustawienia</string>
+    <string name="instruction">Instrukcja</string>
     <string name="about">O programie</string>
-    <string name="quit">Zakończ</string>
+    <string name="quit">Zamknij</string>
     <string name="title_activity_survey"><i><u>Ankieta</u></i></string>
     <string name="user_id">Nr id:</string>
     <string name="sex">Płeć:</string>
     <string name="men">Mężczyzna</string>
     <string name="women">Kobieta</string>
     <string name="age">Wiek:</string>
-    <string name="using_smartphone">Czy używasz smartphona?</string>
+    <string name="using_smartphone">Czy używasz na co dzień smartphona?</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
     <string name="set">Wybierz</string>
     <string name="cancel">Anuluj</string>
     <string name="fill_age">Uzupełnij wiek</string>
-    <string name="title_activity_tap">TapActivity</string>
+    <string name="title_activity_tap">Gest Tap</string>
     <string name="probe_counter">Próba nr</string>
     <string name="test_list"><i><u>Lista badań</u></i></string>
     <string name="title_activity_test_list">TestListActivity</string>
-    <string name="title_activity_pan">PanActivity</string>
-    <string name="title_activity_zoom">ZoomActivity</string>
-    <string name="title_activity_sequence">SequenceActivity</string>
-
-
+    <string name="title_activity_pan">Gest Pan</string>
+    <string name="title_activity_zoom">Gest Pinch and stretch</string>
+    <string name="title_activity_sequence">Badanie sekwencji</string>
+    <string name="begin">Rozpocznij</string>
     <string name="default_name">nazwa testowa</string>
     <string name="send_data">Wyślij wyniki badań</string>
     <string name="end_tests">Zakończ badnia</string>
@@ -37,4 +37,42 @@
     <string name="email_subject">Wyniki badania gestów i sekwencji</string>
     <string name="email_text">W załączniku znajdują się wyniki przeprowadzonych badań.</string>
     <string name="storage_error">Problem z dostępem do pamieęci urządzenia.</string>
+    <string name="ita">ITA</string>
+    <string name="about_title">Praca dyplomowa:</string>
+    <string name="about_title_description">Metodyka oceny jakości działania użytkownika urządzenia z systemem Android</string>
+    <string name="about_promoter">Kierownik pracy:</string>
+    <string name="about_promoter_description">dr inż. Artur Arciuch</string>
+    <string name="about_author">Wykonał:</string>
+    <string name="about_author_description">inż. Piotr Jędrzejewski</string>
+    <string name="title_activity_instruction">InstructionActivity</string>
+    <string name="back_button_dialog">Nacisnij ponownie klawisz, aby wyjść.</string>
+    <string name="title_section1">Tap</string>
+    <string name="title_section2">Pan</string>
+    <string name="title_section3">Pinch and stretch</string>
+    <string name="title_section4">Badanie Sekwencji</string>
+    <string name="instruction_tap_gesture">Gest wykonywany jest przez pojedyńcze stukniecie w element
+        wyświetlany na ekranie urządzenia. Jest odpowiednikiem kliknięcia prawym przyciskiem myszy.
+        Służy między innymi do otwierania aplikacji, wybierania i zatwierdzania wprowadzanych danych.
+        \n\nW czasie badania wprowadzania gestu Tap należy klikać w czerwony kwadrat oznaczony numerem 1,
+        który pojawia sie w losowych miejscach na ekranie urządzenia. Gest wykonany jest prawidłowo,
+        gdy użytkownik kliknie w powierzchnie kwadratu.
+    </string>
+    <string name="instruction_pan_gesture">Gest polegający na nacisnięciu i przeciąganiu palcem po ekranie urządzenia.
+        Najczęściej gest ten jest wykorzystywany do nawigacji po między kartami, przewijaniu tekstu
+        oraz zmiany rozmiesczenia elementów GUI. Jest odpowiednikiem przeciagniecia obirktu za pomocą myszki
+        lub urzycia scrolla.\n\nPodczas badania należy nacisnąc na czerony kwadrat z numerem 1
+        i przesunąć go na miejsce, w którym znajduje się czarny kwadrat onaczony cyfrą 2.
+    </string>
+    <string name="instruction_zoom_gesture">
+        Gest polega na ułożeniu dwóch palców na ekranie urządzenia i bez odrywania ich od powierzchni
+        oddalaniu lub przybliżaniu do siebie. W przypadku przybliżenia palców następuje zmniejszenie obiektu,
+        a przy oddalania powiększenie. Gest ten wykorzystywany jest do przybliżania lub oddalania obiektów
+        takich jak tekst, zdjęcia, strony internetowe lub mapy.\n\nW trakcie trwania badania należy dopasować
+        wielkość czerwonego kwadratu do wielkości czarnego przez użycie wyżej opisanego gestu.
+    </string>
+    <string name="instruction_sequence">
+        Badanie sekwencji polega na wykonaniu trzech ustalonych gestów w określonej kolejności.
+        W skład sekwencji mogą wchodzić następujące gesty w dowolnej kombinacji:
+        \n - Tap,\n - Pan,\n - Pinch and stretch.
+    </string>
 </resources>

@@ -30,6 +30,13 @@ public class SequenceActivity extends TestActivity implements InfoDialog.InfoDia
     }
 
     @Override
+    protected void setInfoDialog() {
+        super.setInfoDialog();
+        infoDialog.setTileId(R.string.title_activity_sequence);
+        infoDialog.setViewId(R.layout.fragment_instruction_sequence);
+    }
+
+    @Override
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();

@@ -62,10 +62,13 @@ public class TestListActivity extends ListActivity {
         if (resultCode == RESULT_OK) {
                 mTests.get(requestCode-1).setDone(true);
             }
-            adapter.notifyDataSetChanged();
+        else
+            DataHolder.getInstance().clearTestData(requestCode);
 
-            if(isAllDone())
-                mSendButton.setEnabled(true);
+        adapter.notifyDataSetChanged();
+
+        if(isAllDone())
+            mSendButton.setEnabled(true);
     }
 
     @Override
@@ -201,7 +204,7 @@ public class TestListActivity extends ListActivity {
             FileOutputStream out = new FileOutputStream(file);
             serializer.setOutput(out, "UTF-8");
             serializer.startDocument("UTF-8", true);
-            serializer.startTag("", "GesturesTest");
+            serializer.startTag("", "BadanieGestow");
             serializer.startTag("", "Id");
             serializer.text(dh.getId());
             serializer.endTag("", "Id");
@@ -253,7 +256,7 @@ public class TestListActivity extends ListActivity {
                 }
                 serializer.endTag("", "Test");
             }
-            serializer.endTag("", "GesturesTest");
+            serializer.endTag("", "BadanieGestow");
             serializer.endDocument();
             serializer.flush();
             out.close();

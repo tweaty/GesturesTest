@@ -11,6 +11,8 @@ public class DataHolder {
     private String sex;
     private boolean usigSmartphone;
     private ArrayList<TestData> tests;
+    private TestData testData;
+
     public static DataHolder getInstance() {
         return ourInstance;
     }
@@ -55,12 +57,18 @@ public class DataHolder {
         tests.add(testData);
     }
 
-    public void clearData(){
+    public void clearAllData(){
         id = null;
         age = 0;
         sex = null;
         usigSmartphone = false;
         tests.clear();
+    }
+    public void clearTestData(int Id){
+        for (int i = tests.size()-1; i>=0; i--){
+            if (tests.get(i).getTestId() == Id)
+                tests.remove(i);
+        }
     }
     private DataHolder() {
         tests = new ArrayList<TestData>();

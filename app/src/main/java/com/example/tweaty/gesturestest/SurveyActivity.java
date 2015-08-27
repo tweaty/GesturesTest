@@ -56,10 +56,10 @@ public class SurveyActivity extends ActionBarActivity implements AgeDialog.AgeDi
             Toast.makeText(getApplicationContext(), R.string.fill_age, Toast.LENGTH_LONG).show();
         }else{
             DataHolder dh = DataHolder.getInstance();
-            dh.clearData();
+            dh.clearAllData();
             dh.setId(editText.getText().toString());
             dh.setAge(mAge);
-            dh.setSex( (rbMen.isChecked())? "Mê¿czyzna" : "Kobieta" );
+            dh.setSex( (rbMen.isChecked())? "M\u0119\u017cczyzna" : "Kobieta" );
             dh.setUsigSmartphone( rbYes.isChecked() );
             Intent startIntent = new Intent(this, TestListActivity.class);
             startActivity(startIntent);

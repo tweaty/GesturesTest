@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/app_name"
         android:textColor="@android:color/primary_text_dark"
-        android:textSize="@dimen/abc_text_size_display_2_material"
+        android:textSize="38sp"
         android:textStyle="italic" />
 
     <Button
@@ -33,10 +33,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/startButton"
+        android:layout_below="@+id/instructionButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="@string/settings" />
+
+    <Button
+        android:id="@+id/instructionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction"
+        android:layout_below="@+id/startButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/aboutButton"
@@ -47,5 +57,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:text="@string/about" />
+
 
 </RelativeLayout>

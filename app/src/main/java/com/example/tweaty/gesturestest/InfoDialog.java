@@ -26,14 +26,14 @@ public class InfoDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        mViewId = R.layout.age_dialog;
-        mTileId = R.string.default_name;
+        //mViewId = R.layout.age_dialog;
+        //mTileId = R.string.default_name;
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
 
         builder.setView(inflater.inflate(mViewId, null))//.setMessage("TapTest")
-                .setTitle(R.string.title_activity_tap)
+                .setTitle(mTileId)
                 .setPositiveButton(mPositiveButtonText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

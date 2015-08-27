@@ -41,7 +41,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
 
     public void randomZoomOption(){
-        zoomIn = random.nextBoolean();
+        zoomIn = (random.nextInt(10) < 5) ;
         mScaleFactor = 1.0f;
         setSize1(20);
         if (zoomIn){

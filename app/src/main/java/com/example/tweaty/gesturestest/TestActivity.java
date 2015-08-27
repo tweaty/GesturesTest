@@ -3,10 +3,12 @@ package com.example.tweaty.gesturestest;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TestActivity extends Activity{
 
@@ -15,7 +17,7 @@ public class TestActivity extends Activity{
     protected int mDisplayWidth, mDisplayHeight, mSize, mTestsNumber;
     protected int counter = 1;
     protected String msg;
-    private InfoDialog infoDialog;
+    protected InfoDialog infoDialog = new InfoDialog();
     protected SharedPreferences sharedPrefs;
     protected long startTime, time;
 
@@ -34,16 +36,37 @@ public class TestActivity extends Activity{
         initSettings();
 
         text.setText(msg + " " + counter + " z " + mTestsNumber);
+        setInfoDialog();
+        infoDialog.show(getFragmentManager(), "InfoDialog");
 
-        infoDialog = new InfoDialog();
+    }
+
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, R.string.back_button_dialog, Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
+
+    protected void setInfoDialog(){
         infoDialog.setCancelable(false);
-        infoDialog.show(getFragmentManager(), "Info");
-
+        infoDialog.setPositiveButtonText(R.string.begin);
     }
 
-    protected void setInfoDialogLayout(int layout){
-        infoDialog.setViewId(layout);
-    }
 
     protected void initSettings(){
         sharedPrefs = PreferenceManager

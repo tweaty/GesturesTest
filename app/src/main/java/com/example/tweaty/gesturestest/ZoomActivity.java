@@ -21,6 +21,13 @@ public class ZoomActivity extends TestActivity implements InfoDialog.InfoDialogL
     }
 
     @Override
+    protected void setInfoDialog() {
+        super.setInfoDialog();
+        infoDialog.setTileId(R.string.title_activity_zoom);
+        infoDialog.setViewId(R.layout.fragment_instruction_zoom);
+    }
+
+    @Override
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();

@@ -21,6 +21,13 @@ public class PanActivity extends TestActivity implements InfoDialog.InfoDialogLi
     }
 
     @Override
+    protected void setInfoDialog() {
+        super.setInfoDialog();
+        infoDialog.setTileId(R.string.title_activity_pan);
+        infoDialog.setViewId(R.layout.fragment_instruction_pan);
+    }
+
+    @Override
     public void onDialogPositiveClick(InfoDialog dialog) {
         mDisplayWidth = mFrame.getWidth();
         mDisplayHeight = mFrame.getHeight();
