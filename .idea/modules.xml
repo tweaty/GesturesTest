@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GesturesTest.iml" filepath="$PROJECT_DIR$/GesturesTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GestureTest.iml" filepath="$PROJECT_DIR$/GestureTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
