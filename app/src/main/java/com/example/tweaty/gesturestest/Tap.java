@@ -66,7 +66,7 @@ public class Tap extends View{
     }
 
     public void setSize(float size){ // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel
-        mSize = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
+        mSize = HelperClass.cmToDpi(size, context);//getResources().getDisplayMetrics());
         //Log.i("DPI", " size: " + mSize);
     }
     @Override

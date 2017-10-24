@@ -1,15 +1,19 @@
 package com.example.tweaty.gesturestest;
 
 
+import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 
 public class HelperClass {
 
-    public static int cmToDpi(float size, DisplayMetrics metrics){
-        float totalDIP = metrics.densityDpi;
-        float inches = size / 25.4f;
-        return Math.round(inches * totalDIP);
+    public static int cmToDpi(float size, Context context){
+        //float totalDIP = metrics.densityDpi;
+        //float inches = size / 25.4f;
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, size,
+                context.getResources().getDisplayMetrics()));
+        //return Math.round(inches * totalDIP);
     }
 
     public static float distance(float x1, float y1, float x2, float y2){

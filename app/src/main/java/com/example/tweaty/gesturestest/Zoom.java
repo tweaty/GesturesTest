@@ -21,6 +21,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     private float mScaleFactor = 1.0f;
     private Random random = new Random();
     private boolean zoomIn;
+    private Context context;
 
     protected IsActionCompleteListener listener;
     public void setListener(IsActionCompleteListener listener){
@@ -29,6 +30,7 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
 
     Zoom(Context context, float width, float height, float tolerance, IsActionCompleteListener listener){
         super(context);
+        this.context = context;
         paint1.setColor(Color.BLACK);
         paint2.setColor(Color.RED);
         mWidth = width;
@@ -54,13 +56,13 @@ public class Zoom extends View implements ScaleGestureDetector.OnScaleGestureLis
     }
 
     public void setSize1(float size){ // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel, cos nie dziala jak nalezy
-        mSize1 = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
+        mSize1 = HelperClass.cmToDpi(size, context);//getResources().getDisplayMetrics());
         //Log.i("DPI", " size: " + mSize1);
 
     }
 
     public void setSize2(float size) { // metoda do ustawiania wielkosci kwadratu w oparciu o DPI tel, cos nie dziala jak nalezy
-        mSize2 = HelperClass.cmToDpi(size, getResources().getDisplayMetrics());
+        mSize2 = HelperClass.cmToDpi(size, context);//.getResources().getDisplayMetrics());
         mResize = mSize2;
         //Log.i("DPI", " size: " + mSize2);
 

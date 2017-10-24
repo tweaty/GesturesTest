@@ -151,7 +151,34 @@ public class TestListActivity extends ListActivity {
         }
         return false;
     }
-
+    private String getSettingsValue(){
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        return getString(R.string.pref_test_number_title) +
+                ": " +
+                sharedPrefs.getInt("key_test_numeber", 0) +
+                "\n" +
+                getString(R.string.pref_test_element_size_title) +
+                ": " +
+                sharedPrefs.getInt("key_element_size", 0) +
+                "mm\n" +
+                getString(R.string.pref_test_toleranceTap_title) +
+                ": " +
+                sharedPrefs.getInt("key_tolerancePan", 0) +
+                "px\n" +
+                getString(R.string.pref_test_tolerancePaS_title) +
+                ": " +
+                sharedPrefs.getInt("key_tolerancePaS", 0) +
+                "px\n" +
+                getString(R.string.pref_sequence_title) +
+                ": " +
+                getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence0", "0"))] +
+                " => " +
+                getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence1", "1"))] +
+                " => " +
+                getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence2", "2"))] +
+                "\n\n";
+    }
 
     private void SaveDataToCsv() {
         DataHolder dh = DataHolder.getInstance();
@@ -163,17 +190,19 @@ public class TestListActivity extends ListActivity {
         fileUri = myDir + "/" + fname;
         attachments.add(Uri.parse("file://" + myDir + "/" + fname));
         String header = "id,wiek,plec,smartphone,testId,nrproby,czas,poprawnosc,precyzja,typ1,czas1,poprawnosc1,precyzja1,typ2,czas2,poprawnosc2,precyzja2,typ3,czas3,poprawnosc3,precyzja3\n";
+
         if (file.exists()) file.delete ();
         try {
             FileOutputStream out = new FileOutputStream(file);
+            out.write(getSettingsValue().getBytes());
             out.write(header.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (TestData td : dh.getTests()){
-                sb.append(dh.getId()).append(",").append(dh.getAge()).append(",").append(dh.getSex())
-                        .append(",").append(dh.isUsigSmartphone()).append(",").append(td.getTestId())
-                        .append(",").append(td.getTestNumber()).append(",").append(td.getTestTime()).
-                        append(",").append(td.isCorrect()).append(",").append(td.getPrecision());
-                for (TestData data: td.sequences){
+                StringBuilder sb = new StringBuilder();
+                for (TestData td : dh.getTests()){
+                    sb.append(dh.getId()).append(",").append(dh.getAge()).append(",").append(dh.getSex())
+                            .append(",").append(dh.isUsigSmartphone()).append(",").append(td.getTestId())
+                            .append(",").append(td.getTestNumber()).append(",").append(td.getTestTime())
+                            .append(",").append(td.isCorrect()).append(",").append(td.getPrecision());
+                    for (TestData data: td.sequences){
                     sb.append(",").append(data.getTestId()).append(",").append(data.getTestTime()).append(",").
                             append(data.isCorrect()).append(",").append(data.getPrecision());
                 }
@@ -190,6 +219,8 @@ public class TestListActivity extends ListActivity {
     }
 
     private void SaveDataToXml() {
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
         DataHolder dh = DataHolder.getInstance();
         String root = Environment.getExternalStorageDirectory().toString();
         File myDir = new File(root + "/saved_test");
@@ -205,18 +236,46 @@ public class TestListActivity extends ListActivity {
             serializer.setOutput(out, "UTF-8");
             serializer.startDocument("UTF-8", true);
             serializer.startTag("", "BadanieGestow");
-            serializer.startTag("", "Id");
-            serializer.text(dh.getId());
-            serializer.endTag("", "Id");
-            serializer.startTag("", "Wiek");
-            serializer.text(String.valueOf(dh.getAge()));
-            serializer.endTag("", "Wiek");
-            serializer.startTag("", "Plec");
-            serializer.text(dh.getSex());
-            serializer.endTag("", "Plec");
-            serializer.startTag("", "Smartphone");
-            serializer.text(String.valueOf(dh.isUsigSmartphone()));
-            serializer.endTag("", "Smartphone");
+            serializer.startTag("", "Ustawienia");
+                serializer.startTag("", "LiczbaPowtorzenTestu");
+                serializer.text(Integer.toString(sharedPrefs.getInt("key_test_numeber", 0)));
+                serializer.endTag("", "LiczbaPowtorzenTestu");
+                serializer.startTag("", "WielkoscElementu");
+                serializer.text(Integer.toString(sharedPrefs.getInt("key_element_size", 0)) + "mm");
+                serializer.endTag("", "WielkoscElementu");
+                serializer.startTag("", "TolerancjaPan");
+                serializer.text(Integer.toString(sharedPrefs.getInt("key_tolerancePan", 0)) + "px");
+                serializer.endTag("", "TolerancjaPan");
+                serializer.startTag("", "TolerancjaPaS");
+                serializer.text(Integer.toString(sharedPrefs.getInt("key_tolerancePaS", 0)) + "px");
+                serializer.endTag("", "TolerancjaPaS");
+                serializer.startTag("", "KolejnoscSekwencji");
+                    serializer.startTag("", "PierwszyGest");
+                    serializer.text(getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence0", "0"))]);
+                    serializer.endTag("", "PierwszyGest");
+                    serializer.startTag("", "DrugiGest");
+                    serializer.text(getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence1", "0"))]);
+                    serializer.endTag("", "DrugiGest");
+                    serializer.startTag("", "TrzeciGest");
+                    serializer.text(getResources().getStringArray(R.array.pref_sequence_entries)[Integer.parseInt(sharedPrefs.getString("key_sequence2", "0"))]);
+                    serializer.endTag("", "TrzeciGest");
+                serializer.endTag("", "KolejnoscSekwencji");
+            serializer.endTag("", "Ustawienia");
+            serializer.startTag("", "Ankieta");
+                serializer.startTag("", "Id");
+                serializer.text(dh.getId());
+                serializer.endTag("", "Id");
+                serializer.startTag("", "Wiek");
+                serializer.text(String.valueOf(dh.getAge()));
+                serializer.endTag("", "Wiek");
+                serializer.startTag("", "Plec");
+                serializer.text(dh.getSex());
+                serializer.endTag("", "Plec");
+                serializer.startTag("", "Smartphone");
+                serializer.text(String.valueOf(dh.isUsigSmartphone()));
+                serializer.endTag("", "Smartphone");
+            serializer.endTag("", "Ankieta");
+            serializer.startTag("", "Badania");
             ArrayList<TestData> tests = dh.getTests();
             for (TestData td : tests){
                 serializer.startTag("", "Test");
@@ -256,6 +315,7 @@ public class TestListActivity extends ListActivity {
                 }
                 serializer.endTag("", "Test");
             }
+            serializer.endTag("", "Badania");
             serializer.endTag("", "BadanieGestow");
             serializer.endDocument();
             serializer.flush();
